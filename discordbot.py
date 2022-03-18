@@ -108,4 +108,4 @@ Hello! I am a bot based on my retarded friend Nguyen Huy Hoang
 And thats it, enjoy. 
 Huy Hoang, you are still retarded.
     """)
-bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA")
+bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA") 
