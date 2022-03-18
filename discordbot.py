@@ -9,7 +9,7 @@ import http.client
 import urllib.request
 
 
-bot = commands.Bot(command_prefix="hh ")
+bot = commands.Bot(command_prefix="hh ", help_command=None)
 
 
 appends = [
@@ -73,12 +73,18 @@ async def getmeme(ctx):
     await ctx.channel.send(data_return)
 @bot.command()
 async def howgay(ctx, name):
-    gayness = random.randint(0, 101)
-    await ctx.channel.send(name + " is " + str(gayness) + "% gay :gay_pride_flag:")
+    if ctx.author.id == 450880259215065089:
+        await ctx.channel.send("You are too gay to judge other people")
+    else:
+        gayness = random.randint(0, 101)
+        await ctx.channel.send(name + " is " + str(gayness) + "% gay :gay_pride_flag:")
 @bot.command()
 async def howsimp(ctx, name):
-    simpness = random.randint(0, 101)
-    await ctx.channel.send(name + " is " + str(simpness) + "% simp")
+    if ctx.author.id == 450880259215065089:
+        await ctx.channel.send("You are too simp to judge other people")
+    else:
+        simpness = random.randint(0, 101)
+        await ctx.channel.send(name + " is " + str(simpness) + "% simp")
 @bot.command()
 async def space(ctx):
     with urllib.request.urlopen("https://api.nasa.gov/planetary/apod?api_key=BWZFUWV4cds8JjCtYFxrfOMJRJRXDKElUHXhCgzC") as nasa:
@@ -88,7 +94,7 @@ async def space(ctx):
     await ctx.channel.send(nasa_image)
     await ctx.channel.send(explain)
 @bot.command()
-async def gethelp(ctx):
+async def help(ctx):
     await ctx.channel.send("""
 Hello! I am a bot based on my retarded friend Nguyen Huy Hoang
 - Some commands you can use (prefix: hh)
@@ -102,4 +108,4 @@ Hello! I am a bot based on my retarded friend Nguyen Huy Hoang
 And thats it, enjoy. 
 Huy Hoang, you are still retarded.
     """)
-bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.C29Xfp5S4gQT3h-WFkBofp5mGAE")
+bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA")
