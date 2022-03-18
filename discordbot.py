@@ -108,4 +108,19 @@ Hello! I am a bot based on my retarded friend Nguyen Huy Hoang
 And thats it, enjoy. 
 Huy Hoang, you are still retarded.
     """)
+@bot.command()
+async def paraphrase(ctx, text):
+    import http.client
+    conn = http.client.HTTPSConnection("rewriter-paraphraser-text-changer-multi-language.p.rapidapi.com")
+    payload = "{\"language\": \"en\", \"strength\": \"3\", \"text\": \"hello, how are you\"}"
+    headers = {
+        'content-type': "application/json",
+        'x-rapidapi-host': "rewriter-paraphraser-text-changer-multi-language.p.rapidapi.com",
+        'x-rapidapi-key': "a2dce5d962mshf5eb203579dfd40p1bcf50jsn3398b84a9180"
+        }
+    conn.request("POST", "/rewrite", payload , headers)
+    res = conn.getresponse()
+    data = res.read()
+    await ctx.channel.send("Paraphrased Text: " + data.decode("utf-8")['rewrite'])
+    await ctx.channel.send("Similarity to the Original: " + data.encode("utf-8")['rewrite'])
 bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA") 
