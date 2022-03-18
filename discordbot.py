@@ -7,7 +7,7 @@ import asyncio
 import json
 import http.client
 import urllib.request
-
+import requests
 
 bot = commands.Bot(command_prefix="hh ", help_command=None)
 
@@ -110,9 +110,8 @@ Huy Hoang, you are still retarded.
     """)
 @bot.command()
 async def paraphrase(ctx, text):
-    import http.client
     conn = http.client.HTTPSConnection("rewriter-paraphraser-text-changer-multi-language.p.rapidapi.com")
-    payload = "{\"language\": \"en\", \"strength\": \"3\", \"text\": \"hello, how are you\"}"
+    payload = "{\"language\": \"en\", \"strength\": \"3\", \"text\": \"" + text + "\"}"
     headers = {
         'content-type': "application/json",
         'x-rapidapi-host': "rewriter-paraphraser-text-changer-multi-language.p.rapidapi.com",
@@ -120,7 +119,6 @@ async def paraphrase(ctx, text):
         }
     conn.request("POST", "/rewrite", payload , headers)
     res = conn.getresponse()
-    data = res.read()
-    await ctx.channel.send("Paraphrased Text: " + data.decode("utf-8")['rewrite'])
-    await ctx.channel.send("Similarity to the Original: " + data.encode("utf-8")['rewrite'])
+    data = json.loads(res.read().decode())
+    await ctx.channel.send("Paraphrased Text: " + data['rewrite'])
 bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA") 
