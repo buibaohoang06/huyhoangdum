@@ -1,14 +1,10 @@
-import discord
-import os
-import time
 import random
 from discord.ext import commands
-import asyncio
 import json
 import http.client
 import urllib.request
-import requests
-
+from dotenv import load_dotenv
+from os import getenv
 bot = commands.Bot(command_prefix="hh ", help_command=None)
 
 
@@ -121,4 +117,6 @@ async def paraphrase(ctx, text):
     res = conn.getresponse()
     data = json.loads(res.read().decode())
     await ctx.channel.send("Paraphrased Text: " + data['rewrite'])
-bot.run("OTUzODM3MzA4MzAwMzc4MTgy.YjKYNw.O3mABqyeS7Nv60OKLL_s605-enA") 
+load_dotenv()
+token = getenv("TOKEN")
+bot.run(token) 
