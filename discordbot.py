@@ -21,8 +21,8 @@ appends = [
 @bot.event
 async def on_ready():
     print("Ready")
-@bot.command()
-async def sayit(ctx, name : discord.Member):
+@bot.command(pass_context = True)
+async def sayit(ctx, name : discord.Member = None):
     if name:
         message = name
         await ctx.channel.send(message + " is " + appends[random.randint(0, len(appends))])
