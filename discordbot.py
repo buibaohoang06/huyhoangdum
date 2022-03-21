@@ -5,6 +5,7 @@ import http.client
 import urllib.request
 from dotenv import load_dotenv
 from os import getenv
+import discord
 bot = commands.Bot(command_prefix="hh ", help_command=None)
 
 
@@ -21,9 +22,12 @@ appends = [
 async def on_ready():
     print("Ready")
 @bot.command()
-async def sayit(ctx, name):
-    message = name
-    await ctx.channel.send(message + " is " + appends[random.randint(0, len(appends))])
+async def sayit(ctx, name : discord.Member):
+    if name:
+        message = name
+        await ctx.channel.send(message + " is " + appends[random.randint(0, len(appends))])
+    else: 
+        await ctx.channel.send("You haven't provided an username!")
 @bot.command()
 async def hello(ctx):
     await ctx.channel.send("Huy Hoang is dumb")
