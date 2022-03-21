@@ -22,9 +22,9 @@ appends = [
 async def on_ready():
     print("Ready")
 @bot.command(pass_context = True)
-async def sayit(ctx, name: discord.Member = None):
+async def sayit(ctx, name: discord.User = None):
     if name:
-        message = name.User
+        message = name
         await ctx.channel.send(message + " is " + appends[random.randint(0, len(appends))])
     else: 
         await ctx.channel.send("You haven't provided an username!")
