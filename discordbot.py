@@ -22,12 +22,9 @@ appends = [
 async def on_ready():
     print("Ready")
 @bot.command(pass_context = True)
-async def sayit(ctx, name: discord.user.id = None):
-    if name:
-        message = name
-        await ctx.channel.send("@" + message + " is " + appends[random.randint(0, len(appends))])
-    else: 
-        await ctx.channel.send("You haven't provided an username!")
+async def sayit(ctx, name):
+    message = name
+    await ctx.channel.send(message + " is " + appends[random.randint(0, len(appends))])
 @bot.command()
 async def hello(ctx):
     await ctx.channel.send("Huy Hoang is dumb")
@@ -80,17 +77,10 @@ async def howgay(ctx, name):
         await ctx.channel.send(name + " is " + str(gayness) + "% gay :gay_pride_flag:")
 @bot.command()
 async def howsimp(ctx, name):
-    if name == '':
-        if ctx.author.id == 450880259215065089:
-            await ctx.channel.send("You are too simp to judge other people")
-        else:
-            await ctx.channel.send(f"@{ctx.author.id} is {str(random.randint(0, 101))}% simp")
+    if ctx.author.id == 450880259215065089:
+        await ctx.channel.send("You are too simp to judge other people")
     else:
-        if ctx.author.id == 450880259215065089:
-            await ctx.channel.send("You are too simp to judge other people")
-        else:
-            simpness = random.randint(0, 101)
-            await ctx.channel.send(name + " is " + str(simpness) + "% simp")
+        await ctx.channel.send(f"{name} is {str(random.randint(0, 101))}% simp")
 @bot.command()
 async def space(ctx):
     with urllib.request.urlopen("https://api.nasa.gov/planetary/apod?api_key=BWZFUWV4cds8JjCtYFxrfOMJRJRXDKElUHXhCgzC") as nasa:
