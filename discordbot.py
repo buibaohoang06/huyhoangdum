@@ -80,11 +80,17 @@ async def howgay(ctx, name):
         await ctx.channel.send(name + " is " + str(gayness) + "% gay :gay_pride_flag:")
 @bot.command()
 async def howsimp(ctx, name):
-    if ctx.author.id == 450880259215065089:
-        await ctx.channel.send("You are too simp to judge other people")
+    if name == '':
+        if ctx.author.id == 450880259215065089:
+            await ctx.channel.send("You are too simp to judge other people")
+        else:
+            await ctx.channel.send(f"@{ctx.author.id} is {str(random.randint(0, 101))}% simp")
     else:
-        simpness = random.randint(0, 101)
-        await ctx.channel.send(name + " is " + str(simpness) + "% simp")
+        if ctx.author.id == 450880259215065089:
+            await ctx.channel.send("You are too simp to judge other people")
+        else:
+            simpness = random.randint(0, 101)
+            await ctx.channel.send(name + " is " + str(simpness) + "% simp")
 @bot.command()
 async def space(ctx):
     with urllib.request.urlopen("https://api.nasa.gov/planetary/apod?api_key=BWZFUWV4cds8JjCtYFxrfOMJRJRXDKElUHXhCgzC") as nasa:
