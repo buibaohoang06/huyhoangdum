@@ -117,6 +117,9 @@ async def paraphrase(ctx, text):
     res = conn.getresponse()
     data = json.loads(res.read().decode())
     await ctx.channel.send("Paraphrased Text: " + data['rewrite'])
+@bot.command()
+async def howblack(ctx, name):
+    await ctx.channel.send(name + " is " + str(random.randint(0, 100)) + "% black")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
