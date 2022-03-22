@@ -120,6 +120,15 @@ async def paraphrase(ctx, text):
 @bot.command()
 async def howblack(ctx, name):
     await ctx.channel.send(name + " is " + str(random.randint(0, 100)) + "% black")
+@bot.command()
+async def scam(ctx, name):
+    messages = [
+        "you just won a FREE CRUISE!!",
+        "you just won 15.000$!!",
+        "you just won 25.000VP",
+        "you just won 25.000 robux"
+    ]
+    await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "Click on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
