@@ -137,11 +137,14 @@ async def scam(ctx, name):
 @bot.command(pass_context = True)
 @has_permissions(kick_members = True)
 async def kick(ctx, username: discord.Member):
-	if target.server_permissions.administrator:
+	if username.server_permissions.administrator:
 		await ctx.channel.send("Targeted user is an Admin!")
 	else:
 		await bot.kick(username)
 		await ctx.channel.send(f"User {username} has been kicked from the server!")
+@kick.error()
+async def kick(error, ctx):
+	await ctx.channel.send(f"Something went wrong, error: {error}. Please check your permissions or try again later.")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
