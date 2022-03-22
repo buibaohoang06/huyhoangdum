@@ -136,7 +136,7 @@ async def scam(ctx, name):
     await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "\nClick on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
 @bot.command(pass_context = True)
 @has_permissions(kick_members = True)
-async def kick(ctx, username: discord.Member):
+async def kick(ctx, username: Member):
 	if username.server_permissions.administrator:
 		await ctx.channel.send("Targeted user is an Admin!")
 	else:
