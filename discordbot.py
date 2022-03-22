@@ -6,6 +6,7 @@ import urllib.request
 from dotenv import load_dotenv
 from os import getenv
 import discord
+from discord.ext.commands import has_permissions
 bot = commands.Bot(command_prefix="hh ", help_command=None)
 
 
