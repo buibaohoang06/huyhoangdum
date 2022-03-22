@@ -136,7 +136,7 @@ async def scam(ctx, name):
     await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "\nClick on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
 @bot.command()
 async def pp(ctx, name):
-	await ctx.channel.send(name + "'s pp size is: 8" + str(("=" * random.randint(1, 10))))
+	await ctx.channel.send(name + "'s pp size is: 8" + str(("=" * random.randint(1, 10))) + "D")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
