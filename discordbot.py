@@ -133,14 +133,10 @@ async def scam(ctx, name):
         "you just won 25.000 robux"
     ]
     await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "\nClick on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
-async def send_dm(ctx, member = discord.Member, content):
-	channel = await member.create_dm()
-	await channel.send(content)
 @bot.command()
 async def kick(ctx, username: discord.User):
 	await bot.kick(username)
 	await ctx.channel.send(f"User {username} has been kicked from the server!")
-	await send_dm(username, "By seeing this message, you have been kicked from the server! For more information, please contact the Owner")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
