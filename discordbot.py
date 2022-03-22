@@ -142,14 +142,6 @@ async def kick(ctx, username: discord.Member):
 	else:
 		await bot.kick(username)
 		await ctx.channel.send(f"User {username} has been kicked from the server!")
-@kick.error()
-async def kick(error, ctx):
-	if isinstance(error, CheckFailure):
-		await ctx.channel.send("Insufficient Permissions")
-	elif isinstance(error, BadArgument):
-		await ctx.channel.send("Wrong username or something went wrong!")
-	else: 
-		await ctx.channel.send(f"Something went wrong! Error code: {error}")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
