@@ -6,7 +6,7 @@ import urllib.request
 from dotenv import load_dotenv
 from os import getenv
 import discord
-from discord.ext.commands import has_permissions
+from discord.ext.commands import has_permissions, CheckFailure, BadArgument
 bot = commands.Bot(command_prefix="hh ", help_command=None)
 
 
@@ -144,7 +144,12 @@ async def kick(ctx, username: discord.Member):
 		await ctx.channel.send(f"User {username} has been kicked from the server!")
 @kick.error()
 async def kick(error, ctx):
-	await ctx.channel.send(f"Something went wrong, error: {error}. Please check your permissions or try again later.")
+	if isinstance(error, CheckFailure):
+		await ctx.channel.send("Insufficient Permissions")
+	elif isinstance(error, BadArgument):
+		await ctx.channel.send("Wrong username or something went wrong!")
+	else: 
+		await ctx.channel.send(f"Something went wrong! Error code: {error}")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
