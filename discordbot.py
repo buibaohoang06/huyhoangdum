@@ -101,6 +101,7 @@ Hello! I am a bot based on my retarded friend Nguyen Huy Hoang
     + hh sayit @username - Attach the name with wonderful words.
     + hh getmeme - Get a meme.
     + hh rule34 (tags) - You know what this does. If have multiple tags, add a %20 as a space
+    + hh scam @username - Scam someone
 And thats it, enjoy. 
 Huy Hoang, you are still retarded.
     """)
@@ -128,7 +129,7 @@ async def scam(ctx, name):
         "you just won 25.000VP",
         "you just won 25.000 robux"
     ]
-    await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "Click on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
+    await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "\nClick on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
