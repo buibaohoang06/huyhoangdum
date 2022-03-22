@@ -134,14 +134,6 @@ async def scam(ctx, name):
         "you just won 25.000 robux"
     ]
     await ctx.channel.send(name + messages[random.randint(0, len(messages))] + "\nClick on this link! Link: https://www.thisworldthesedays.com/free-stuff4.html")
-@bot.command(pass_context = True)
-@has_permissions(kick_members = True)
-async def kick(ctx, username):
-	if username.server_permissions.administrator:
-		await ctx.channel.send("Targeted user is an Admin!")
-	else:
-		await bot.kick(username)
-		await ctx.channel.send(f"User {username} has been kicked from the server!")
 load_dotenv()
 token = getenv("TOKEN")
 bot.run(token) 
