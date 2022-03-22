@@ -64,10 +64,13 @@ async def rule34(ctx, tag):
                 await ctx.channel.send("Can't find anything with the given keyword") 
 @bot.command()
 async def getmeme(ctx):
-    with urllib.request.urlopen("https://meme-api.herokuapp.com/gimme") as meme_url:
-        data = json.loads(meme_url.read().decode())
-        data_return = data['preview'][3]
-    await ctx.channel.send(data_return)
+    try:
+        with urllib.request.urlopen("https://meme-api.herokuapp.com/gimme") as meme_url:
+            data = json.loads(meme_url.read().decode())
+            data_return = data['preview'][3]
+        await ctx.channel.send(data_return)
+     except json.IndexError:
+        await ctx.channel.send("Can't find anything :( Try again later!")
 @bot.command()
 async def howgay(ctx, name):
     if ctx.author.id == 450880259215065089:
