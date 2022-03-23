@@ -137,6 +137,12 @@ async def scam(ctx, name):
 @bot.command()
 async def pp(ctx, name):
 	await ctx.channel.send(name + "'s pp size is: 8" + str(("=" * random.randint(1, 30))) + "D")
+async def howfunny(ctx, name):
+	if ctx.author.id == 450880259215065089:
+		await ctx.channel.send("You are too bland to judge other people")
+	else:
+		await.ctx.channel.send(f"{name} is {random.randint(0, 100)}% funny")
 load_dotenv()
+
 token = getenv("TOKEN")
 bot.run(token) 
