@@ -142,10 +142,8 @@ async def howfunny(ctx, name):
 	if ctx.author.id == 450880259215065089:
 		await ctx.channel.send("You are too bland to judge other people")
 	else:
-		if name == "@lil pp":
-			await ctx.channel.send("He is too bland to be rated")
-		else:
-			await ctx.channel.send(f"{name} is {random.randint(0, 100)}% funny")
+		await ctx.channel.send(f"{name} is {random.randint(0, 100)}% funny")
+async def hug(ctx, name)
 load_dotenv()
 
 token = getenv("TOKEN")
