@@ -143,7 +143,15 @@ async def howfunny(ctx, name):
 		await ctx.channel.send("You are too bland to judge other people")
 	else:
 		await ctx.channel.send(f"{name} is {random.randint(0, 100)}% funny")
-async def hug(ctx, name)
+@bot.command()
+async def hug(ctx, name):
+	things = [
+		"everything is going to be okay!",
+		"everything is going to be fine!",
+		"calm down, nothing is wrong!",
+		"you are perfect, keep it that way!"
+	]
+	await ctx.channel.send(f"{name}", {things[random.randint(0, len(things))]})
 load_dotenv()
 
 token = getenv("TOKEN")
