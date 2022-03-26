@@ -143,6 +143,13 @@ async def howfunny(ctx, name):
 		await ctx.channel.send("You are too bland to judge other people")
 	else:
 		await ctx.channel.send(f"{name} is {random.randint(0, 100)}% funny")
+@bot.command()
+async def guessnum(ctx, number):
+	comp = random.randint(0, 10000)
+	if number == comp:
+		await ctx.channel.send(f"You are correct! The number is {number}")
+	else:
+		await ctx.channel.send(f"You are wrong! The number is {comp}")
 load_dotenv()
 
 token = getenv("TOKEN")
