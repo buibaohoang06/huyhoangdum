@@ -154,7 +154,7 @@ async def guessnum(ctx, number):
 async def insult(ctx, name):
 	with urllib.request.urlopen("https://evilinsult.com/generate_insult.php?lang=en&type=json") as insult:
 		data = insult.read().decode()
-		response = data[2]
+		response = data['insult']
 	await ctx.channel.send(f"{name}. {response}")
 load_dotenv()
 
