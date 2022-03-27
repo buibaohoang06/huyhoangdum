@@ -154,7 +154,7 @@ async def guessnum(ctx, number):
 async def insult(ctx, name):
 	with urllib.request.urlopen("https://insult.mattbas.org/api/insult.json") as insult:
 		data = insult.read().decode()
-		response = data[2]
+		response = data['object'][2]
 	await ctx.channel.send(f"{name}. {response}")
 load_dotenv()
 
