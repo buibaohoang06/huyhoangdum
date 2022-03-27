@@ -150,6 +150,11 @@ async def guessnum(ctx, number):
 		await ctx.channel.send(f"You are correct! The number is {number}")
 	else:
 		await ctx.channel.send(f"You are wrong! The number is {comp}")
+async def insult(ctx, name):
+	with urllib.request.urlopen("https://insult.mattbas.org/api/insult.json") as insult:
+		data = insult.read().decode()
+		response = data['insult']
+	await ctx.channel.send(f"{name}. {response}")
 load_dotenv()
 
 token = getenv("TOKEN")
