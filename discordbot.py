@@ -158,7 +158,7 @@ async def insult(ctx, name):
 	await ctx.channel.send(f"{name}. {response}")
 @insult.error
 async def insult_error(ctx, error):
-	if isinstance(error, command.MissingRequiredArgument):
+	if isinstance(error, commands.MissingRequiredArgument):
 		await ctx.channel.send("You haven't mentioned who you wanted to roast. Mention that person and try again!")
 load_dotenv()
 
