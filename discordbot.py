@@ -152,9 +152,9 @@ async def guessnum(ctx, number):
 		await ctx.channel.send(f"You are wrong! The number is {comp}")
 @bot.command()
 async def insult(ctx, name):
-	with urllib.request.urlopen("https://insult.mattbas.org/api/insult.json") as insult:
+	with urllib.request.urlopen("https://evilinsult.com/generate_insult.php?lang=en&type=json") as insult:
 		data = insult.read().decode()
-		response = data[0][2]
+		response = data[2]
 	await ctx.channel.send(f"{name}. {response}")
 load_dotenv()
 
