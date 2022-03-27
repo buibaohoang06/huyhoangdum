@@ -156,7 +156,7 @@ async def insult(ctx, name):
 		data = json.loads(insult.read().decode())
 		response = data['insult']
 	await ctx.channel.send(f"{name}. {response}")
-@insult.error()
+@insult.error
 async def insult_error(ctx, error):
 	if isinstance(error, command.MissingRequiredArgument):
 		await ctx.channel.send("You haven't mentioned who you wanted to roast. Mention that person and try again!")
