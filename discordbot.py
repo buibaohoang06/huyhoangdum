@@ -137,6 +137,10 @@ async def scam(ctx, name):
 @bot.command()
 async def pp(ctx, name):
 	await ctx.channel.send(name + "'s pp size is: 8" + str(("=" * random.randint(1, 30))) + "D")
+@pp.error
+async def pp_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.channel.send("You haven't mentioned anyone, mention someone and try again.")
 @bot.command()
 async def howfunny(ctx, name):
 	if ctx.author.id == 450880259215065089:
