@@ -168,7 +168,7 @@ async def insult_error(ctx, error):
 async def unsplash(ctx, tag):
 	with urllib.request.urlopen(f"https://api.unsplash.com/search/collections?client_id=MBjGywIFtkbQEBLsXni7gntiTWzAZk7pcXgDUANtvko&page=1&query={tag}") as uns:
 		data = json.loads(uns.read().response())
-		response = data['results'][random.randint(1, data['total']]
+		response = data['results'][random.randint(1, data['total'])]
 	await ctx.channel.send(response)
 load_dotenv()
 
