@@ -172,7 +172,7 @@ async def unsplash(ctx, tag):
 	await ctx.channel.send(response)
 @unsplash.error
 async def unsplash_error(ctx, error):
-	if isinstace(error, commands.MissingRequiredArgument):
+	if isinstance(error, commands.MissingRequiredArgument):
 		await ctx.channel.send("Please enter a specific tag")
 load_dotenv()
 
