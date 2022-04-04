@@ -170,6 +170,10 @@ async def unsplash(ctx, tag):
 		data = json.loads(uns.read().decode())
 		response = data['results'][random.randint(1, 9)]['preview_photos'][0]['urls']['full']
 	await ctx.channel.send(response)
+@unsplash.error
+async def unsplash_error(ctx, error):
+	if isinstace(error, commands.MissingRequiredArgument):
+		await ctx.channel.send("Please enter a specific tag")
 load_dotenv()
 
 token = getenv("TOKEN")
