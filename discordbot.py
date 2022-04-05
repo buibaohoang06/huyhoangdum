@@ -43,26 +43,10 @@ async def dadjoke(ctx):
     data = json.loads(res.read().decode('utf-8'))
     await ctx.channel.send("Dad joked: " + data['body'][0]['setup'] + " | " + data['body'][0]['punchline'])
 @bot.command()
-async def rule34(ctx, tag):
-    message = tag
-    if message == "random":
-                url = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=*%20-furry_*%20-furry%20-pets%20-animals%20-pet%20-animal"
-                with urllib.request.urlopen(url) as r34:
-                    data = json.loads(r34.read().decode())
-                    data_return = data[random.randint(0, len(data))]['sample_url']
-                await ctx.channel.send(data_return)
-    else:
-            url = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&tags=" + message + "%20-furry_*%20-furry%20-pets%20-animals%20-pet%20-animal"
-            
-            try:
-                with urllib.request.urlopen(url) as r34:
-                    data = json.loads(r34.read().decode())
-                    data_return = data[random.randint(0, len(data))]['sample_url']
-                await ctx.channel.send(data_return)
-            except json.JSONDecodeError:
-                await ctx.channel.send("Invalid keywords, please try again")
-            except json.IndexError:
-                await ctx.channel.send("Can't find anything with the given keyword") 
+async def gb(ctx, tag):
+	with urllib.request.urlopen(f"https://gelbooru.com/index.php?page=dapi&s=post&q=index&tags={tags}&json=1") as gel:
+		data = json.loads(gel.read().decode())
+		data_return = data['JSON']['post'][random.randint(0, len(data['JSON']['post']))]
 @bot.command()
 async def getmeme(ctx):
     try:
