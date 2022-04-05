@@ -43,7 +43,7 @@ async def dadjoke(ctx):
     data = json.loads(res.read().decode('utf-8'))
     await ctx.channel.send("Dad joked: " + data['body'][0]['setup'] + " | " + data['body'][0]['punchline'])
 @bot.command()
-async def gb(ctx, tag):
+async def gb(ctx, tags):
 	with urllib.request.urlopen(f"https://gelbooru.com/index.php?page=dapi&s=post&q=index&tags={tags}&json=1") as gel:
 		data = json.loads(gel.read().decode())
 		data_return = data['JSON']['post'][random.randint(0, len(data['JSON']['post']))]
