@@ -46,7 +46,7 @@ async def dadjoke(ctx):
 async def gb(ctx, tags):
 	with urllib.request.urlopen(f"https://gelbooru.com/index.php?page=dapi&s=post&q=index&tags={tags}&json=1") as gel:
 		data = json.loads(gel.read().decode())
-		data_return = data['JSON']['post'][random.randint(0, len(data['JSON']['post']))]
+		data_return = data['post'][random.randint(0, len(data['post']))]
 @bot.command()
 async def getmeme(ctx):
     try:
