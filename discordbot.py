@@ -174,6 +174,55 @@ async def unsplash(ctx, tag):
 async def unsplash_error(ctx, error):
 	if isinstance(error, commands.MissingRequiredArgument):
 		await ctx.channel.send("Please enter a specific tag")
+# command for bot to join the channel of the user, if the bot has already joined and is in a different channel, it will move to the channel the user is in
+@bot.command()
+async def play(ctx, url):
+    channel = ctx.message.author.voice.channel
+    voice = get(app.voice_clients, guild=ctx.guild)
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+    YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
+    FFMPEG_OPTIONS = {
+        'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+
+    if not get(app.voice_clients, guild=ctx.guild).is_playing():
+        with YoutubeDL(YDL_OPTIONS) as ydl:
+            info = ydl.extract_info(url, download=False)
+        URL = info['url']
+        get(app.voice_clients, guild=ctx.guild).play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+        get(app.voice_clients, guild=ctx.guild).is_playing()
+        await ctx.send('Bot is playing')
+
+# check if the bot is already playing
+    else:
+        await ctx.send("Bot is already playing")
+        return
+
+
+# command to resume voice if it is paused
+@bot.command()
+async def resume(ctx):
+    if not get(app.voice_clients, guild=ctx.guild).is_playing():
+        get(app.voice_clients, guild=ctx.guild).resume()
+        await ctx.send('Bot is resuming')
+
+
+# command to pause voice if it is playing
+@bot.command()
+async def pause(ctx):
+    if get(app.voice_clients, guild=ctx.guild).is_playing():
+        get(app.voice_clients, guild=ctx.guild).pause()
+        await ctx.send('Bot has been paused')
+
+
+# command to stop voice
+@bot.command()
+async def stop(ctx):
+    if get(app.voice_clients, guild=ctx.guild).is_playing():
+        await ctx.send('Stopping...')
+        await get(app.voice_clients, guild=ctx.guild).disconnect()
 load_dotenv()
 
 token = getenv("TOKEN")
