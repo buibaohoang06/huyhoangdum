@@ -8,7 +8,12 @@ from os import getenv
 import discord
 from discord.ext.commands import has_permissions, CheckFailure, BadArgument
 bot = commands.Bot(command_prefix="hh ", help_command=None)
-
+from discord.ext import commands
+from discord.utils import get
+from discord import FFmpegPCMAudio
+from discord import TextChannel
+from youtube_dl import YoutubeDL
+import asyncio
 
 appends = [
     "idiotic",
